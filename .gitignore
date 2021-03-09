@@ -221,6 +221,7 @@ env.bak/
 venv.bak/
 pythonenv*
 .idea/
+migrations/
 
 # Spyder project settings
 .spyderproject
