@@ -12,3 +12,6 @@ class Post(models.Model):
     # string 선언하면 admin 페이지에서 볼 때, 목록에 보여지는 이름을 뭐로 할지 정할 수 있음
     def __str__(self):
         return f'[{self.pk}]{self.title}' #[번호]제목
+
+    def get_absolute_url(self):
+        return f'/blog/{self.pk}'
