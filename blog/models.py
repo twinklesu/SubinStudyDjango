@@ -5,6 +5,7 @@ import os
 class Post(models.Model):
     # pk 필드 자동 생성. 레코드 고유값.
     title = models.CharField(max_length=30)
+    hook_text = models.CharField(max_length=100, blank=True)
     content = models.TextField() #문자열의 길이 제한 없음
 
     head_image = models.ImageField(upload_to='blog/images/%Y/%m/%d', blank=True)
