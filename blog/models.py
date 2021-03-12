@@ -10,6 +10,8 @@ class Post(models.Model):
     # 파일이 많은 폴더에서 찾는건 오래걸림. 폴더를 여러개 만들어서 타고 가는게 빠름
     # 이미지 필드 사용을 위해서는 Pillow 라이브러리 필요함. 파이썬 이미지 처리 라이브러리
 
+    file_upload = models.FileField(upload_to='blog/files/%Y/%m/%d', blank=True)
+
     created_at = models.DateTimeField(auto_now_add=True) #월, 일, 시, 분, 초 생성마다
     updated_at = models.DateTimeField(auto_now=True) # 수정 마다
 
