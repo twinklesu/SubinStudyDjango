@@ -6,6 +6,10 @@ class Post(models.Model):
     title = models.CharField(max_length=30)
     content = models.TextField() #문자열의 길이 제한 없음
 
+    head_image = models.ImageField(upload_to='blog/images/%Y/%m/%d', blank=True)
+    # 파일이 많은 폴더에서 찾는건 오래걸림. 폴더를 여러개 만들어서 타고 가는게 빠름
+    # 이미지 필드 사용을 위해서는 Pillow 라이브러리 필요함. 파이썬 이미지 처리 라이브러리
+
     created_at = models.DateTimeField(auto_now_add=True) #월, 일, 시, 분, 초 생성마다
     updated_at = models.DateTimeField(auto_now=True) # 수정 마다
 

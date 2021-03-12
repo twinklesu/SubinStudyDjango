@@ -7,3 +7,4 @@ urlpatterns =[
     path('', views.PostList.as_view()),
     # path('', views.index),
 ]
+

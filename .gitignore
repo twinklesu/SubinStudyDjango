@@ -222,6 +222,7 @@ venv.bak/
 pythonenv*
 .idea/
 migrations/
+_media/
 
 # Spyder project settings
 .spyderproject
