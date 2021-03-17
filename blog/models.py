@@ -18,7 +18,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) #월, 일, 시, 분, 초 생성마다
     updated_at = models.DateTimeField(auto_now=True) # 수정 마다
 
-    author = models.ForeignKey(User, on_delete=models.CASCADE) #작성자가 삭제되면 포스트도 삭제됨
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL) #작성자가 삭제되면 작성자명 빈칸으로
 
     # string 선언하면 admin 페이지에서 볼 때, 목록에 보여지는 이름을 뭐로 할지 정할 수 있음
     def __str__(self):
