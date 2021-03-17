@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import os
 
 # Create your models here.
@@ -17,9 +18,11 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) #월, 일, 시, 분, 초 생성마다
     updated_at = models.DateTimeField(auto_now=True) # 수정 마다
 
+    author = models.ForeignKey(User, on_delete=models.CASCADE) #작성자가 삭제되면 포스트도 삭제됨
+
     # string 선언하면 admin 페이지에서 볼 때, 목록에 보여지는 이름을 뭐로 할지 정할 수 있음
     def __str__(self):
-        return f'[{self.pk}]{self.title}' #[번호]제목
+        return f'[{self.pk}]{self.title} :: {self.author}' #[번호]제목
 
     def get_absolute_url(self):
         return f'/blog/{self.pk}/'
