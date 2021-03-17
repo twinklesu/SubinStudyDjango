@@ -14,9 +14,13 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return f'/blog/category/{self.slug}/'
+
     # 모델을 단수로 만들면 장고가 알아서 복수로 만드는데, 복수형 틀릴 경우 지정 필요
     class Meta:
        verbose_name_plural = 'Categories'
+
 
 
 class Post(models.Model):
