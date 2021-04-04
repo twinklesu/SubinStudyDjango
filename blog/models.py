@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 import os
+from markdownx.models import MarkdownxField
+from markdownx.utils import markdown
 
 # Create your models here.
 
@@ -36,7 +38,7 @@ class Post(models.Model):
     # pk 필드 자동 생성. 레코드 고유값.
     title = models.CharField(max_length=30)
     hook_text = models.CharField(max_length=100, blank=True)
-    content = models.TextField() #문자열의 길이 제한 없음
+    content = MarkdownxField() #마크다운 양식적용
 
     head_image = models.ImageField(upload_to='blog/images/%Y/%m/%d', blank=True)
     # 파일이 많은 폴더에서 찾는건 오래걸림. 폴더를 여러개 만들어서 타고 가는게 빠름
@@ -65,3 +67,6 @@ class Post(models.Model):
 
     def get_file_ext(self):
         return self.get_file_name().split('.')[-1]
+
+    def get_content_markdown(self):
+        return markdown(self.content)
