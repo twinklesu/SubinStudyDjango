@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Post, Category, Tag
+from .models import Post, Category, Tag, Comment
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.core.exceptions import PermissionDenied
 from django.utils.text import slugify
@@ -105,6 +105,16 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
                 tags_str_list.append(t.name)
             context['tags_str_default'] = '; '.join(tags_str_list)
         return context
+
+class CommentUpdate(LoginRequiredMixin, UpdateView):
+    model = Comment
+    form_class = CommentForm
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated and request.user == self.get_object().author:
+            return super(CommentUpdate, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
 # FVB
 
